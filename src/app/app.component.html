@@ -3,19 +3,125 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container" style="text-align:center">
+  <h2 style="text-align:center" class="text-red">please fill the form to Get proceed: </h2>
 
-<router-outlet></router-outlet>
+  <form [formGroup]=formData (ngSubmit)="onSubmit()">
+    <div style="text-align: justify;">
+      <section formGroupName=Name class=form-group>
+        <h2>Name</h2>
+        <div class="row">
+          <div class="col form-group"
+            [ngClass]="{'border-red':errorOccured.firstName }">
+            <label for="" class="control-label">First Name</label>
+            <input type="text" name="" id="" class="form-control" formControlName=firstName (blur) ="formkeys()">
+            <span *ngIf="errorOccured.firstName">
+              {{errorOccured.firstName}}
+            </span>
+          </div>
+          <div class="col" [ngClass]="{'border-red':errorOccured.middleName }">
+            <label for="">Middle Name</label>
+            <input type="text" name="" id="" class="form-control" formControlName=middleName (blur) ="formkeys()">
+            <span *ngIf="errorOccured.middleName">
+              {{errorOccured.middleName}}
+            </span>
+          </div>
+
+          <div class="col" [ngClass]="{'border-red':errorOccured.lastName }">
+            <label for="">Last Name</label>
+            <input type="text" name="" id="" class="form-control" formControlName=lastName (blur) ="formkeys()">
+            <span *ngIf="errorOccured.lastName">
+              {{errorOccured.lastName}}
+            </span>
+          </div>
+        </div>
+      </section>
+      <section formGroupName=Email>
+        <h2>Email & Mobile</h2>
+        <div class="row">
+          <div class="col" [ngClass]="{'border-red':errorOccured.email }">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" formControlName=email (blur) ="formkeys()">
+            <span *ngIf="errorOccured.email">
+              {{errorOccured.email}}
+            </span>
+          </div>
+          <div class="col" [ngClass]="{'border-red':errorOccured.mobile }">
+            <label for="mobile">Mobile</label>
+            <input type="number" class="form-control" formControlName=mobile (blur) ="formkeys()">
+            <span *ngIf="errorOccured.mobile">
+              {{errorOccured.mobile}}
+            </span>
+          </div>
+        </div>
+
+      </section>
+      <section formGroupName=Address>
+        <h2>Address</h2>
+        <div [ngClass]="{'border-red':errorOccured.permanent }">
+          <label for="Address">Permanent Address</label>
+          <input type="text" class="form-control" formControlName=permanent (blur) ="formkeys()">
+          <span *ngIf="errorOccured.permanent">
+            {{errorOccured.permanent}}
+          </span>
+        </div>
+        <div [ngClass]="{'border-red':errorOccured.address2 }">
+          <label for="Address">Address 2</label>
+          <input type="text" class="form-control" formControlName=address2 (blur) ="formkeys()">
+          <span *ngIf="errorOccured.address2">
+            {{errorOccured.address2}}
+          </span>
+        </div>
+
+        <div class="row">
+          <div class="col" [ngClass]="{'border-red':errorOccured.city }">
+            <label for="City">City</label>
+            <input type="text" class="form-control" formControlName=city (blur) ="formkeys()">
+            <span *ngIf="errorOccured.city">
+              {{errorOccured.city}}
+            </span>
+          </div>
+          <div class="col" [ngClass]="{'border-red':errorOccured.state }">
+            <label for="state">State</label>
+            <input type="text" class="form-control" formControlName=state (blur) ="formkeys()">
+            <span *ngIf="errorOccured.state">
+              {{errorOccured.state}}
+            </span>
+          </div>
+          <div class="col" [ngClass]="{'border-red':errorOccured.zip }">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" formControlName=zip (blur) ="formkeys()">
+            <span *ngIf="errorOccured.zip">
+              {{errorOccured.zip}}
+            </span>
+          </div>
+        </div>
+      </section>
+      <section class="form-check" formGroupName=Board>
+        <h2>Board</h2>
+        <div class="row">
+          <div class="col">
+            <label for="board">CBSE</label>
+            <input type="radio" value="cbse" class="form-check-input" formControlName=board (blur) ="formkeys()">
+          </div>
+          <div class="col">
+            <label for="board">ISC</label>
+            <input type="radio" value="isc" class="form-check-input" formControlName=board (blur) ="formkeys()">
+          </div>
+          <div class="col">
+            <label for="board">OTHER</label>
+            <input type="radio" value='other' class="form-check-input" formControlName=board (blur) ="formkeys()">
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]=!formData.valid>Submit</button> <p></p>
+
+  </form>
+  <!-- <button class="btn btn-primary" (click)="validationkeys()">Get Keys</button> -->
+</div>
+
+<p></p>
+<p></p>
